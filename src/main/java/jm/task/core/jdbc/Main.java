@@ -9,6 +9,13 @@ import java.sql.*;
 public class Main {
     public static void main(String[] args) {
         UserDaoJDBCImpl dao = new UserDaoJDBCImpl();
-        dao.createUsersTable();
+        //dao.createUsersTable();
+        //dao.dropUsersTable();
+
+        //dao.saveUser("Bruce", "Lee", (byte) 20);
+        //dao.removeUserById(5);
+
+        //dao.getAllUsers();
+        //dao.cleanUsersTable();
         }
     }

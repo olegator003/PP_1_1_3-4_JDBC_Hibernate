@@ -12,7 +12,7 @@ public class Util {
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
-            System.out.println("Соединение с базой данных успешно установлено.");
+            //System.out.println("Соединение с базой данных успешно установлено.");
         } catch (SQLException e) {
             System.err.println("Ошибка при подключении к базе данных: " + e.getMessage());
         }
@@ -24,7 +24,7 @@ public class Util {
         if (connection != null) {
             try {
                 connection.close();
-                System.out.println("Соединение с базой данных закрыто.");
+                //System.out.println("Соединение с базой данных закрыто.");
             } catch (SQLException e) {
                 System.err.println("Ошибка при закрытии соединения: " + e.getMessage());
             }
