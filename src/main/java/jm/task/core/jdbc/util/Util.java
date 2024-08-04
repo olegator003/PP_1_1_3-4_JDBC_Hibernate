@@ -8,7 +8,7 @@ public class Util {
     private static final String USER = "root";
     private static final String PASSWORD = "1337";
 
-    public static Connection getConnection() {
+    public static Connection getConnectionJDBC() {
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -20,7 +20,7 @@ public class Util {
     }
 
     //закрытие
-    public static void closeConnection(Connection connection) {
+    public static void closeConnectionJDBC(Connection connection) {
         if (connection != null) {
             try {
                 connection.close();

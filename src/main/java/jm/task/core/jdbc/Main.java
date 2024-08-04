@@ -17,5 +17,7 @@ public class Main {
 
         //dao.getAllUsers();
         //dao.cleanUsersTable();
-        }
+
+
+    }
     }

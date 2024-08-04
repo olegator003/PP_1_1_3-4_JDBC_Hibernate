@@ -17,7 +17,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public void createUsersTable() {
         try {
-            connection = Util.getConnection();
+            connection = Util.getConnectionJDBC();
             statement = connection.createStatement();
             String sql = "CREATE TABLE IF NOT EXISTS user " +
                     "(id INTEGER not NULL AUTO_INCREMENT, " +
@@ -30,13 +30,13 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            Util.closeConnection(connection);
+            Util.closeConnectionJDBC(connection);
         }
     }
 
     public void dropUsersTable() {
         try {
-            connection = Util.getConnection();
+            connection = Util.getConnectionJDBC();
             statement = connection.createStatement();
             String sql = "DROP TABLE IF EXISTS user";
             statement.executeUpdate(sql);
@@ -44,13 +44,13 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            Util.closeConnection(connection);
+            Util.closeConnectionJDBC(connection);
         }
     }
 
     public void saveUser(String name, String lastName, byte age) {
         try{
-            connection = Util.getConnection();
+            connection = Util.getConnectionJDBC();
 
             String query = "INSERT INTO user (name, lastname, age) VALUES (?, ?, ?)";
 
@@ -64,13 +64,13 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         } finally {
-            Util.closeConnection(connection);
+            Util.closeConnectionJDBC(connection);
         }
     }
 
     public void removeUserById(long id) {
         try{
-            connection = Util.getConnection();
+            connection = Util.getConnectionJDBC();
 
             String query = "DELETE FROM user WHERE id = ?";
 
@@ -82,13 +82,13 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         } finally {
-            Util.closeConnection(connection);
+            Util.closeConnectionJDBC(connection);
         }
     }
 
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<User>();
-        connection = Util.getConnection();
+        connection = Util.getConnectionJDBC();
 
         try(Statement statement = connection.createStatement();) {
             ResultSet results = statement.executeQuery("SELECT * FROM user");
@@ -103,14 +103,14 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            Util.closeConnection(connection);
+            Util.closeConnectionJDBC(connection);
         }
         return users;
     }
 
     public void cleanUsersTable() {
         try {
-            connection = Util.getConnection();
+            connection = Util.getConnectionJDBC();
             String query = "TRUNCATE TABLE user";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.executeUpdate();
@@ -118,7 +118,7 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         } finally {
-            Util.closeConnection(connection);
+            Util.closeConnectionJDBC(connection);
         }
     }
 }
