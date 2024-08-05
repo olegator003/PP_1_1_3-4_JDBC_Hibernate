@@ -107,6 +107,7 @@ public class UserDaoJDBCImpl implements UserDao {
         }
         return users;
     }
+    ojvnfiv
 
     public void cleanUsersTable() {
         try {
