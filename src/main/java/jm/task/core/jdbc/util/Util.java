@@ -50,6 +50,7 @@ public class Util {
         if (sessionFactory == null) {
             try {
                 // Создаем Configuration
+                //lalala
                 Configuration configuration = new Configuration();
                 configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
                 configuration.setProperty("hibernate.connection.driver_class", "com.mysql.cj.jdbc.Driver");

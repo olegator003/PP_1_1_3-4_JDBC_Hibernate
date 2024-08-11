@@ -27,7 +27,7 @@ public class Main {
         //daoHibernate.saveUser("Olegator", "Gorodenskiy", (byte) 21);
         //daoHibernate.removeUserById(2);
 
-        daoHibernate.getAllUsers();
-        //daoHibernate.cleanUsersTable();
+        //daoHibernate.getAllUsers();
+        //daoHibernate.cleanUsersTable(); .
     }
     }
