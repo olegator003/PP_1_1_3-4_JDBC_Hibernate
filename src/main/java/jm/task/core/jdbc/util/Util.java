@@ -19,20 +19,28 @@ public class Util {
     private static final String URL = "jdbc:mysql://localhost:3306/userok";
     private static final String USER = "root";
     private static final String PASSWORD = "1337";
-    private static SessionFactory sessionFactory;
+    private static final String DRIVER = "com.mysql.jdbc.Driver";
+
 
     public static Connection getConnectionJDBC() {
         Connection connection = null;
         try {
+            // Проверка наличия драйвера
+            Class.forName(DRIVER);
+        } catch (ClassNotFoundException e) {
+            System.err.println("Драйвер не найден: " + e.getMessage());
+            throw new RuntimeException("Драйвер не найден", e);
+        }
+
+        try {
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
             //System.out.println("Соединение с базой данных успешно установлено.");
         } catch (SQLException e) {
-            System.err.println("Ошибка при подключении к базе данных: " + e.getMessage());
+            throw new RuntimeException(e);
         }
         return connection;
     }
 
-    //закрытие
     public static void closeConnectionJDBC(Connection connection) {
         if (connection != null) {
             try {
@@ -42,28 +50,5 @@ public class Util {
                 System.err.println("Ошибка при закрытии соединения: " + e.getMessage());
             }
         }
-    }
-
-
-
-    public static SessionFactory getSessionFactory() {
-        if (sessionFactory == null) {
-            try {
-                // Создаем Configuration
-                //lalala
-                Configuration configuration = new Configuration();
-                configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-                configuration.setProperty("hibernate.connection.driver_class", "com.mysql.cj.jdbc.Driver");
-                configuration.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/userok");
-                configuration.setProperty("hibernate.connection.username", "root");
-                configuration.setProperty("hibernate.connection.password", "1337");
-                configuration.setProperty("hibernate.hbm2ddl.auto", "");
-                configuration.addAnnotatedClass(User.class);
-                sessionFactory = configuration.buildSessionFactory();
-            } catch (Throwable ex) {
-                throw new ExceptionInInitializerError(ex);
-            }
-        }
-        return sessionFactory;
     }
 }
